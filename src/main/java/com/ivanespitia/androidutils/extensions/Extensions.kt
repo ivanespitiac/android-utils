@@ -9,12 +9,15 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 
+
 // Alert UI
 
+@Suppress("UNUSED")
 fun AppCompatActivity.shortToast(value: String?) {
     Toast.makeText(this, value, Toast.LENGTH_SHORT).show()
 }
 
+@Suppress("UNUSED")
 fun AppCompatActivity.longToast(value: String?) {
     Toast.makeText(this, value, Toast.LENGTH_LONG).show()
 }
@@ -25,6 +28,7 @@ fun AppCompatActivity.longToast(value: String?) {
  * @param message
  * @param okLabel
  */
+@Suppress("UNUSED")
 fun AppCompatActivity.showAlert(
     title: String?,
     message: String?,
@@ -47,6 +51,7 @@ fun AppCompatActivity.showAlert(
  * @param okLabel
  * @param cancelLabel
  */
+@Suppress("UNUSED")
 fun AppCompatActivity.showQuestionAlert(
     title: String?,
     message: String?,
@@ -74,6 +79,7 @@ fun AppCompatActivity.showQuestionAlert(
  * @param title
  * @param items
  */
+@Suppress("UNUSED")
 fun AppCompatActivity.showItemsDialog(
     title: String?,
     items: MutableList<CharSequence>,
@@ -97,6 +103,7 @@ fun AppCompatActivity.showItemsDialog(
  * @param extras
  * @param singleTask
  */
+@Suppress("UNUSED")
 fun AppCompatActivity.launchIntent(
     clazz: Class<out AppCompatActivity>,
     extras: MutableMap<String, String?> = mutableMapOf(),
@@ -142,10 +149,33 @@ fun AppCompatActivity.launchEmail(
 }
 
 /**
+ * Open Dial phone by phone number
+ * @param phone number
+ */
+fun AppCompatActivity.launchDial(
+    phone: String?
+) {
+    try {
+        val phoneIntent = Intent(
+            Intent.ACTION_DIAL,
+            Uri.fromParts(
+                "tel",
+                phone,
+                null
+            )
+        )
+        this.startActivity(phoneIntent)
+    } catch (e: ActivityNotFoundException) {
+        e.printStackTrace()
+    }
+}
+
+/**
  * Set title of action bar activity
  * @param res res id of string label
  * @param enableBackArrow set if you want to see back arrow
  */
+@Suppress("UNUSED")
 fun AppCompatActivity.setBarTitle(
     res: Int? = null,
     enableBackArrow: Boolean = false) {
@@ -168,6 +198,7 @@ fun AppCompatActivity.setBarTitle(
  * @param bundle (optional)
  * @return Fragment
  */
+@Suppress("UNUSED")
 fun AppCompatActivity.fragment(clazz: Class<out Fragment>, bundle: Bundle? = null): Fragment {
     val fragment = this.supportFragmentManager.fragmentFactory.instantiate(classLoader, clazz.name)
     fragment.arguments = bundle
